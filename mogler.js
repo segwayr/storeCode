@@ -129,26 +129,4 @@
                 //pass
         }
     } 
-
-    
-
-}
-
-
-let tes = new Mogler(6);
-let tes2 = new Mogler(1);
-
-
-
-while(true) {
-var res = tes.spinResult()
-console.log(res)
-
-
-if (tes.getData("total") > 1000) {
-    console.log(tes.getData("total"))
-    console.log(tes.getData("spin"))
-    console.log(tes.getData("history"))
-    break;
-}
 }
