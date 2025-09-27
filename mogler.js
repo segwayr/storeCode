@@ -1,7 +1,7 @@
-
 /*export default*/ class Mogler {
 
-    //メンバ変数
+    //----------メンバ変数----------//
+    //-----クラス変数
     //合計フラグ数（クジの枚数）
     static flagSum = 65535;
     //固定のフラグ（確率はflagsum÷commonFlag[key]）
@@ -23,6 +23,7 @@
         CherryReg:104, CenterCherry:"Reg", Freeze:"Big", noLot:0
     }
 
+    //-----インスタンス変数
     #flagItem = [];                 //インスタンスに設定されたフラグ
     #level = 0;                     //台の設定
     #outRe = 0;                     //現在、若しくは直近のメダルアウト
@@ -58,8 +59,8 @@
     }
 
     //----------パブリックメソッド----------//
-    //回転と結果
-    //arg無し
+    //-----回転と結果
+    //-----arg無し
     spinResult() {
         //回転結果
         const flgRes = Math.floor(Math.random() * Mogler.flagSum);
@@ -78,8 +79,8 @@
         return  [flgRes, key,];
     }
 
-    //台の持つ履歴へのアクセサ
-    //arg1 : 文字列によって取得するデータを選択できる
+    //-----台の持つ履歴へのアクセサ
+    //-----arg1 : 文字列によって取得するデータを選択できる
     getData(dataName) {
         switch(dataName) {
             case "total":
@@ -94,8 +95,8 @@
     }
 
     //----------プライベートメソッド----------//
-    //ストックモード
-    //arg1 : Big連かReg連かを設定
+    //-----ストックモード
+    //-----arg1 : Big連かReg連かを設定
     #stockGame(flg) {
         const prob = 75; //継続率（%）
 
@@ -110,8 +111,8 @@
         return
     }
 
-    //データカウンター
-    //arg1 : データに追加するフラグ
+    //-----データカウンター
+    //-----arg1 : データに追加するフラグ
     #dataCnt(flg) {
         this.#totalSpin++        //総回転数
         this.#nowSpin++          //現在回転数
