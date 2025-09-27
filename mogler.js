@@ -1,5 +1,5 @@
 
- class Mogler {
+/*export default*/ class Mogler {
 
     //メンバ変数
     //合計フラグ数（クジの枚数）
@@ -38,7 +38,8 @@
     }
     
 
-    //設定値を
+    //----------コンストラクター----------//
+    //arg1 : インスタンス化する台の設定
     constructor(level){
         //設定 1～6のみ
         if (/^[1-6]$/.test(level)) {
@@ -56,7 +57,7 @@
         
     }
 
-    //----------パブリックメソッドメソッド----------//
+    //----------パブリックメソッド----------//
     //回転と結果
     //arg無し
     spinResult() {
@@ -77,7 +78,7 @@
         return  [flgRes, key,];
     }
 
-    //データ表示のアクセサ
+    //台の持つ履歴へのアクセサ
     //arg1 : 文字列によって取得するデータを選択できる
     getData(dataName) {
         switch(dataName) {
@@ -91,7 +92,6 @@
                 return this.#flagCnt;
         }        
     }
-
 
     //----------プライベートメソッド----------//
     //ストックモード
@@ -110,23 +110,27 @@
         return
     }
 
-    //
+    //データカウンター
+    //arg1 : データに追加するフラグ
     #dataCnt(flg) {
-        this.#totalSpin++
-        this.#nowSpin++
-        this.#flagCnt[flg]++
+        this.#totalSpin++        //総回転数
+        this.#nowSpin++          //現在回転数
+        this.#flagCnt[flg]++     //フラグ回数を追加
 
-        //当選後現在の回転数をリセットし、履歴の配列に当選時の回転数を記録
+        //当選フラグを引いた場合、現在の回転数をリセットし、履歴の配列に当選時の回転数を記録
         switch(flg) {
             case "Big":
             case "Reg":
             case "CenterChery":
             case "Freeze":
+                //台の当選履歴を直近10回までとし、現在回転数を初期化
                 this.#reSpin.push(this.#nowSpin);
+                this.#reSpin.length > 10 &&  this.#reSpin.shift()
                 this.#nowSpin = 0;
                 break;
             default:
                 //pass
         }
     } 
+
 }
